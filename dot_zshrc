@@ -1,0 +1,26 @@
+#zsh customizations
+PROMPT='%B%1~%b %B%(?.%F{red}𑀇.%F{red}%? 𑀇)%b%B%(!.#.%F{blue}𑀇%F{yellow}𑀇%f)%b '
+#export PROMPT_COMMAND="echo -en '\033]1;  ${PWD} \007';$PROMPT_COMMAND"
+#precmd() { eval "$PROMPT_COMMAND" }
+
+#pyenv
+#export PYENV_ROOT="$HOME/.pyenv"
+#eval "$(pyenv virtualenv-init -)"
+#eval "$(pyenv init -)"
+
+#rust
+export CARGO_HOME=/Users/sohan/.local/share/cargo
+export RUSTUP_HOME=/Users/sohan/.local/share/rustup
+
+#other programs
+#alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+
+#alias tc="things-cli"
+#alias atp="auto-terminal-profile update-profile"
+#alias lfsf="npm run lint-fix && npm run style-fix"
+
+#export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+#export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(npm prefix -s)/node_modules/.bin/shopify hydrogen'

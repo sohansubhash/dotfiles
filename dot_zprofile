@@ -1,0 +1,17 @@
+export ENABLE_TEST_LOGS=true
+autoload -Uz compinit && compinit
+autoload -Uz vcs_info
+
+#homebrew
+fpath+=("/opt/homebrew/share/zsh/site-functions")
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
+
+#nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+
+#rust
+. "/Users/sohan/.local/share/cargo/env"
