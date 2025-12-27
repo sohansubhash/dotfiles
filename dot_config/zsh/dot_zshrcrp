@@ -1,0 +1,37 @@
+#zsh customizations
+PROMPT='%f%B%F{magenta}%1~%f%b %B%(?.%F{red}𑀇.%F{red}%? 𑀇)%b%B%(!.#.%F{cyan}𑀇%F{yellow}𑀇)%b %F{white}'
+#export PROMPT_COMMAND="echo -en '\033]1;  ${PWD} \007';$PROMPT_COMMAND"
+#precmd() { eval "$PROMPT_COMMAND" }
+#DISABLE_AUTO_TITLE="true"
+export SSH_AUTH_SOCK=/Users/sohan/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+export ENABLE_TEST_LOGS=true
+autoload -Uz compinit && compinit
+autoload -Uz vcs_info
+
+#homebrew
+fpath+=("/opt/homebrew/share/zsh/site-functions")
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/sbin:$PATH
+
+#nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+
+#pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+
+#other programs
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+eval $(thefuck --alias) 
+
+#deliverr
+export AWS_PROFILE=staging
+alias aws_change_profile_staging='export AWS_PROFILE=staging'
+alias awslo="python3 /Users/sohan/Developer/dev-setup/setup-aws-cli-sso.py"
+alias wsm="cd /Users/sohan/Developer/warehouse-service-manager &&
+ sls offline start --stage=dev --profile=staging --httpPort=3000 --lambdaPort=3004 --noPrependStageInUrl"
+alias tc="things-cli"
+alias atp="auto-terminal-profile update-profile"
