@@ -2,10 +2,16 @@
 	name = Sohan Subhash
 	email = sohansubhash@users.noreply.github.com
 [core]
-	editor = vim
-	excludesfile = /Users/sohan/.gitignore_global
+	editor = subl -n -w
+[diff]
+	tool = smerge
+[merge]
+	tool = smerge
 [push]
 	autoSetupRemote = true
+[mergetool "smerge"]
+	cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+	trustExitCode = true
 [alias]
 	br = branch
 	co = checkout
