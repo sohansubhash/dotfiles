@@ -1,0 +1,17 @@
+[user]
+	name = Sohan Subhash
+	email = sohansubhash@users.noreply.github.com
+[core]
+	editor = vim
+	excludesfile = /Users/sohan/.gitignore_global
+[push]
+	autoSetupRemote = true
+[alias]
+	br = branch
+	co = checkout
+	st = status
+	ol = log --oneline
+	rpo = remote prune origin
+	fos = fetch origin staging:staging
+	fom = fetch origin master:master
+	pushn = push --no-verify
