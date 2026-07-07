@@ -21,3 +21,5 @@
 	fos = fetch origin staging:staging
 	fom = fetch origin master:master
 	pushn = push --no-verify
+[init]
+	defaultBranch = main

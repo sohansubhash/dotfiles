@@ -1,0 +1,26 @@
+#theme = dark:Monokai Pro Ristretto,light:Monokai Pro Light Sun
+#theme = dark:Gruvbox Dark Hard,light:Gruvbox Light Hard
+theme = dark:Xcode Dark,light:Xcode Light
+font-family = Berkeley Mono
+font-family-bold = Berkeley Mono Bold
+font-size = 18
+cursor-color = c5791c
+cursor-style = bar
+cursor-style-blink = true
+macos-titlebar-style = native
+shell-integration = fish
+#macos-icon = xray
+auto-update = off
+resize-overlay = after-first
+keybind = shift+enter=text:\n
+window-colorspace = display-p3
+window-decoration = auto
+#background-blur = 40
+#background-opacity = 0.85
+keybind = global:ctrl+enter=toggle_quick_terminal
+quick-terminal-size = 50%,30%
+#background-opacity = 0.85
+#background-blur = "macos-glass-clear"
+quick-terminal-position = center
+quick-terminal-animation-duration = 0.01
+command = /run/current-system/sw/bin/fish

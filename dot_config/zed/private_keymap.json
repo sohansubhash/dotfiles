@@ -1,0 +1,182 @@
+[
+  {
+    "bindings": {
+      "cmd-k": "command_palette::Toggle",
+      "cmd-o": "file_finder::Toggle",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-p cmd-q": "editor::Rewrap",
+      "cmd-p q": "editor::Rewrap",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-p z": "editor::ToggleSoftWrap",
+    },
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "bindings": {
+      //"cmd-p c": "assistant::CopyCode",
+      "cmd-p l": "agent::OpenRulesLibrary",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-p e": ["pane::CloseItemsToTheLeft", { "close_pinned": false }],
+      "cmd-p t": ["pane::CloseItemsToTheRight", { "close_pinned": false }],
+      "cmd-p u": ["pane::CloseCleanItems", { "close_pinned": false }],
+      "cmd-p w": ["pane::CloseAllItems", { "close_pinned": false }],
+      "cmd-p cmd-w": "workspace::CloseAllItemsAndPanes",
+      "cmd-p shift-enter": "pane::TogglePinTab",
+      "cmd-p up": "pane::SplitUp",
+      "cmd-p down": "pane::SplitDown",
+      "cmd-p left": "pane::SplitLeft",
+      "cmd-p right": "pane::SplitRight",
+    },
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-p cmd-d": ["editor::SelectNext", { "replace_newest": true }],
+      "cmd-p ctrl-cmd-d": [
+        "editor::SelectPrevious",
+        { "replace_newest": true },
+      ],
+      "cmd-p cmd-i": "editor::Hover",
+      "cmd-p cmd-b": "editor::BlameHover",
+      "cmd-p cmd-l": "editor::ToggleFold",
+      "cmd-p cmd-[": "editor::FoldRecursive",
+      "cmd-p cmd-]": "editor::UnfoldRecursive",
+      "cmd-p cmd-1": "editor::FoldAtLevel_1",
+      "cmd-p cmd-2": "editor::FoldAtLevel_2",
+      "cmd-p cmd-3": "editor::FoldAtLevel_3",
+      "cmd-p cmd-4": "editor::FoldAtLevel_4",
+      "cmd-p cmd-5": "editor::FoldAtLevel_5",
+      "cmd-p cmd-6": "editor::FoldAtLevel_6",
+      "cmd-p cmd-7": "editor::FoldAtLevel_7",
+      "cmd-p cmd-8": "editor::FoldAtLevel_8",
+      "cmd-p cmd-9": "editor::FoldAtLevel_9",
+      "cmd-p cmd-0": "editor::FoldAll",
+      "cmd-p cmd-j": "editor::UnfoldAll",
+      "cmd-p r": "editor::RevealInFileManager",
+      "cmd-p p": "workspace::CopyPath",
+    },
+  },
+  {
+    "context": "Editor && extension == md",
+    "bindings": {
+      "cmd-p v": "markdown::OpenPreviewToTheSide",
+    },
+  },
+  {
+    "context": "Editor && extension == svg",
+    "bindings": {
+      "cmd-p v": "svg::OpenPreviewToTheSide",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-p s": "workspace::SaveWithoutFormat",
+      "cmd-p cmd-s": "zed::OpenKeymap",
+      "cmd-p cmd-t": "theme_selector::Toggle",
+      "cmd-p cmd-shift-t": "theme::ToggleMode",
+      "cmd-p n": "encoding_selector::Toggle",
+      "cmd-p m": "language_selector::Toggle",
+      "cmd-p cmd-m": "toolchain::AddToolchain",
+      "cmd-p cmd-left": "workspace::ActivatePaneLeft",
+      "cmd-p cmd-right": "workspace::ActivatePaneRight",
+      "cmd-p cmd-up": "workspace::ActivatePaneUp",
+      "cmd-p cmd-down": "workspace::ActivatePaneDown",
+      "cmd-p shift-left": "workspace::SwapPaneLeft",
+      "cmd-p shift-right": "workspace::SwapPaneRight",
+      "cmd-p shift-up": "workspace::SwapPaneUp",
+      "cmd-p shift-down": "workspace::SwapPaneDown",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-p": "terminal::Clear",
+    },
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "bindings": {
+      "cmd-p": "pane::SplitUp",
+    },
+  },
+  {
+    "context": "RecentProjects || (RecentProjects > Picker > Editor)",
+    "bindings": {
+      "cmd-p": "recent_projects::ToggleActionsMenu",
+    },
+  },
+  {
+    "context": "KeymapEditor",
+    "bindings": {
+      "cmd-p": "keymap_editor::OpenCreateKeybindingModal",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  {
+    "bindings": {
+      "alt-cmd-o": "workspace::Open",
+    },
+  },
+  {
+    "unbind": {
+      "cmd-o": "workspace::Open",
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "alt-cmd-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "ctrl-r": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  {
+    "context": "BufferSearchBar",
+    "unbind": {
+      "cmd-shift-o": "outline::Toggle",
+    },
+  },
+  {
+    "context": "Editor && mode == full",
+    "unbind": {
+      "cmd-shift-o": "outline::Toggle",
+    },
+  },
+]
