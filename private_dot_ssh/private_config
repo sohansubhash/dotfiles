@@ -1,0 +1,2 @@
+Include ~/.ssh/identity.conf
+Include ~/.ssh/hosts.conf
