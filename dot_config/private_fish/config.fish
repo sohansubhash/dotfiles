@@ -8,16 +8,22 @@ set -x XDG_CACHE_HOME $HOME/.cache
 set -x XDG_DATA_HOME $HOME/.local/share
 set -x XDG_STATE_HOME $HOME/.local/state
 
+# Fish vim mode
+set -g fish_key_bindings fish_vi_key_bindings
+
 # Colima
 set -x COLIMA_HOME $XDG_CONFIG_HOME/colima
 
 # Docker
 set -x DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 
+# Kube
+set -gx KUBECONFIG "$XDG_CONFIG_HOME/kube/config"
+
 # Deno
 set -x DENO_INSTALL_ROOT $HOME/.local/bin
 
-# npm 
+# npm
 set -x NPM_CONFIG_CACHE $XDG_CACHE_HOME/npm
 set -x NPM_CONFIG_PREFIX $XDG_DATA_HOME/npm
 
@@ -47,8 +53,5 @@ set -x ANDROID_USER_HOME $XDG_CONFIG_HOME/android
 set -x FLY_CONFIG $XDG_CONFIG_HOME/fly
 
 # pnpm
-set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
-if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
-end
-# pnpm end
+set -gx PNPM_HOME "$XDG_DATA_HOME/pnpm"
+fish_add_path --global "$PNPM_HOME/bin"

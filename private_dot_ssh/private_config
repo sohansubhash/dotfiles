@@ -1,2 +1,3 @@
+Include /Users/sohan/.config/colima/ssh_config
 Include ~/.ssh/identity.conf
 Include ~/.ssh/hosts.conf

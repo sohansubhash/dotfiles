@@ -2,4 +2,4 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:\x1d
-SETUVAR fish_user_paths:/Users/sohan/Library/pnpm\x1e/Users/sohan/\x2elocal/share/cargo/bin\x1e/Users/sohan/\x2elocal/bin\x1e/opt/homebrew/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS
+SETUVAR fish_user_paths:/Users/sohan/\x2elocal/share/cargo/bin\x1e/Users/sohan/\x2elocal/bin\x1e/opt/homebrew/bin\x1e/Applications/Ghostty\x2eapp/Contents/MacOS
