@@ -12,14 +12,14 @@ function yk
         ykman oath accounts code 2>/dev/null | while read -l line
             if string match -qr '^(.+?):(.+?)\s+(\d{6,8})$' $line
                 set -l m (string match -r '^(.+?):(.+?)\s+(\d{6,8})$' $line)
-                printf "%-20s %s\n" "$m[2]" "$m[4]"
+                printf "  %-20s %s\n" "$m[2]" "$m[4]"
             else if string match -qr '^(.+?):(.+?)\s+\[Requires Touch\]$' $line
                 set -l m (string match -r '^(.+?):(.+?)\s+\[Requires Touch\]$' $line)
-                printf "%-20s %s\n" "$m[2]" "[Touch Required]"
+                printf "  %-20s %s\n" "$m[2]" "[Touch Required]"
             else if string match -qr '^(.+)\s+(\d{6,8})$' $line
                 # Handle accounts without colons
                 set -l m (string match -r '^(.+)\s+(\d{6,8})$' $line)
-                printf "%-20s %s\n" "$m[2]" "$m[3]"
+                printf "  %-20s %s\n" "$m[2]" "$m[3]"
             end
         end
         return 0
@@ -40,16 +40,25 @@ function yk
     # Find matches
     set -l query_lower (string lower $query)
     set -l matches
+    set -l exact_matches
     
     for line in $all_accounts
         set -l parts (string split '|' $line)
         set -l name $parts[1]
         set -l code $parts[2]
+        set -l name_lower (string lower $name)
         
         # Case-insensitive matching
-        if string match -qi "*$query_lower*" $name
+        if test "$name_lower" = "$query_lower"
+            set -a exact_matches "$name|$code"
+        else if string match -q "*$query_lower*" $name_lower
             set -a matches "$name|$code"
         end
+    end
+
+    # Prefer an exact account name over partial matches.
+    if test (count $exact_matches) -gt 0
+        set matches $exact_matches
     end
 
     # Handle results
@@ -61,13 +70,13 @@ function yk
         ykman oath accounts code 2>/dev/null | while read -l line
             if string match -qr '^(.+?):(.+?)\s+(\d{6,8})$' $line
                 set -l m (string match -r '^(.+?):(.+?)\s+(\d{6,8})$' $line)
-                printf "%-20s %s\n" "$m[2]" "$m[4]"
+                printf "  %-20s %s\n" "$m[2]" "$m[4]"
             else if string match -qr '^(.+?):(.+?)\s+\[Requires Touch\]$' $line
                 set -l m (string match -r '^(.+?):(.+?)\s+\[Requires Touch\]$' $line)
-                printf "%-20s %s\n" "$m[2]" "[Touch Required]"
+                printf "  %-20s %s\n" "$m[2]" "[Touch Required]"
             else if string match -qr '^(.+)\s+(\d{6,8})$' $line
                 set -l m (string match -r '^(.+)\s+(\d{6,8})$' $line)
-                printf "%-20s %s\n" "$m[2]" "$m[3]"
+                printf "  %-20s %s\n" "$m[2]" "$m[3]"
             end
         end
         return 1
@@ -83,18 +92,23 @@ function yk
             set code (ykman oath accounts code "$name" -s 2>/dev/null)
         end
         
-        # Format output: "✓ Amazon - icloud" instead of "✓ Copied code for: Amazon:icloud"
-        set -l display_name (string replace ':' ' - ' $name)
-        echo $code | pbcopy
-        echo "✓ $display_name"
+        set -l name_parts (string split -m 1 ':' $name)
+        set -l display_name $name_parts[1]
+        printf '%s' "$code" | pbcopy
+        printf "✓ %-20s %s\n" "$display_name" "$code"
         return 0
     else
-        # Multiple matches - show them
+        # Multiple matches - show every matching account and code
         echo "Multiple matches found:"
         for match in $matches
             set -l parts (string split '|' $match)
-            set -l display_name (string replace ':' ' - ' $parts[1])
-            echo "  $display_name"
+            set -l name_parts (string split -m 1 ':' $parts[1])
+            set -l display_name $name_parts[1]
+            set -l code $parts[2]
+            if test "$code" = "TOUCH"
+                set code "[Touch Required]"
+            end
+            printf "  %-20s %s\n" "$display_name" "$code"
         end
         return 1
     end
